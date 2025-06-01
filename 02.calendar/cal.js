@@ -17,7 +17,7 @@ console.log("日 月 火 水 木 金 土");
 process.stdout.write("   ".repeat(firstDay.getDay()));
 
 for (let date = 1; date <= lastDay.getDate(); date++) {
-  process.stdout.write(String(date).padStart(2, " ") + " ");
+  process.stdout.write(`${String(date).padStart(2, " ")} `);
   // 土曜日 または 月末の日なら改行する
   if ((firstDay.getDay() + date - 1) % 7 === 6 || date === lastDay.getDate()) {
     process.stdout.write("\n");
