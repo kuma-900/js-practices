@@ -11,9 +11,7 @@ const month = args.m ?? today.getMonth() + 1;
 const firstDay = new Date(year, month - 1, 1);
 const lastDay = new Date(year, month, 0);
 
-const header = `${month}月 ${year}`;
-
-console.log(header.padStart(13, " "));
+console.log(`${month}月 ${year}`.padStart(13, " "));
 console.log("日 月 火 水 木 金 土");
 
 process.stdout.write("   ".repeat(firstDay.getDay()));
