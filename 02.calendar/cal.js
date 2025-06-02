@@ -11,8 +11,13 @@ const month = args.m ?? today.getMonth() + 1;
 const firstDay = new Date(year, month - 1, 1);
 const lastDay = new Date(year, month, 0);
 
-console.log(`${month}月 ${year}`.padStart(13, " "));
-console.log("日 月 火 水 木 金 土");
+const WIDTH = 20;
+const title = `${month}月 ${year}`;
+const week = "日 月 火 水 木 金 土";
+const leftPadding = Math.floor((WIDTH + title.length) / 2);
+
+console.log(title.padStart(leftPadding, " "));
+console.log(week);
 
 process.stdout.write("   ".repeat(firstDay.getDay()));
 
