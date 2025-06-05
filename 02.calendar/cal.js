@@ -12,12 +12,12 @@ const firstDay = new Date(year, month - 1, 1);
 const lastDay = new Date(year, month, 0);
 
 const WIDTH = 20;
-const title = `${month}月 ${year}`;
-const week = "日 月 火 水 木 金 土";
-const leftPadding = Math.floor((WIDTH + title.length) / 2);
+const monthYearHeader = `${month}月 ${year}`;
+const dayOfWeekHeader = "日 月 火 水 木 金 土";
+const leftPadding = Math.floor((WIDTH + monthYearHeader.length) / 2);
 
-console.log(title.padStart(leftPadding, " "));
-console.log(week);
+console.log(monthYearHeader.padStart(leftPadding, " "));
+console.log(dayOfWeekHeader);
 
 process.stdout.write("   ".repeat(firstDay.getDay()));
 
