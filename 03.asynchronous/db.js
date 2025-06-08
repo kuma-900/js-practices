@@ -14,11 +14,14 @@ export function runAsync(sql, params) {
   });
 }
 
-export function getAsync(sql, params = []) {
+export function getAsync(sql, params) {
   return new Promise((resolve, reject) => {
     db.get(sql, params, (err, row) => {
-      if (err) reject(err);
-      else resolve(row);
+      if (err) {
+        reject(err);
+      } else {
+        resolve(row);
+      }
     });
   });
 }
