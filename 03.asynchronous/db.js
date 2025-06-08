@@ -2,11 +2,14 @@ import sqlite3 from "sqlite3";
 
 export const db = new sqlite3.Database(":memory:");
 
-export function runAsync(sql) {
+export function runAsync(sql, params) {
   return new Promise((resolve, reject) => {
-    db.run(sql, function (err) {
-      if (err) reject(err);
-      else resolve(this.lastID);
+    db.run(sql, params, function (err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(this);
+      }
     });
   });
 }

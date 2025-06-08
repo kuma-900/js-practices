@@ -11,9 +11,9 @@ runAsync(CREATE_TABLE_SQL)
     console.log("テーブルを作成しました");
     return runAsync(INSERT_SQL);
   })
-  .then((id) => {
-    console.log("レコードを追加しました。ID =", id);
-    return getAsync(SELECT_SQL, id);
+  .then((result) => {
+    console.log("レコードを追加しました。ID =", result.lastID);
+    return getAsync(SELECT_SQL, [result.lastID]);
   })
   .then((row) => {
     console.log("取得したレコード:", row);

@@ -10,10 +10,10 @@ async function runTest() {
   await runAsync(CREATE_TABLE_SQL);
   console.log("テーブルを作成しました");
 
-  const id = await runAsync(INSERT_SQL);
-  console.log("レコードを追加しました。ID =", id);
+  const result = await runAsync(INSERT_SQL);
+  console.log("レコードを追加しました。ID =", result.lastID);
 
-  const row = await getAsync(SELECT_SQL, id);
+  const row = await getAsync(SELECT_SQL, [result.lastID]);
   console.log("取得したレコード:", row);
 
   await runAsync(DROP_TABLE_SQL);
