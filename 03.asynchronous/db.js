@@ -2,7 +2,7 @@ import sqlite3 from "sqlite3";
 
 export const db = new sqlite3.Database(":memory:");
 
-export function runAsync(sql, params) {
+export function runAsync(db, sql, params) {
   return new Promise((resolve, reject) => {
     db.run(sql, params, function (err) {
       if (err) {
@@ -14,7 +14,7 @@ export function runAsync(sql, params) {
   });
 }
 
-export function getAsync(sql, params) {
+export function getAsync(db, sql, params) {
   return new Promise((resolve, reject) => {
     db.get(sql, params, (err, row) => {
       if (err) {
@@ -26,7 +26,7 @@ export function getAsync(sql, params) {
   });
 }
 
-export function closeAsync() {
+export function closeAsync(db) {
   return new Promise((resolve) => {
     db.close(() => {
       resolve();
