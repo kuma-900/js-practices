@@ -13,7 +13,7 @@ function runTest(db) {
     db.run(INSERT_SQL, function () {
       console.log("レコードを追加しました。ID =", this.lastID);
 
-      db.get(SELECT_SQL, [this.lastID], (err, row) => {
+      db.get(SELECT_SQL, [this.lastID], (_err, row) => {
         console.log("取得したレコード:", row);
 
         db.run(DROP_TABLE_SQL, () => {

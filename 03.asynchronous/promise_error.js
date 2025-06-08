@@ -15,12 +15,12 @@ runAsync(db, CREATE_TABLE_SQL)
     console.log("レコードを追加しました。ID =", result.lastID);
     return runAsync(db, INSERT_SQL);
   })
-  .catch((insertError) => {
-    console.error(insertError.message);
+  .catch((err) => {
+    console.error(err.message);
     return getAsync(db, SELECT_NO_TABLE_SQL);
   })
-  .catch((selectError) => {
-    console.error(selectError.message);
+  .catch((err) => {
+    console.error(err.message);
     return runAsync(db, DROP_TABLE_SQL);
   })
   .then(() => {

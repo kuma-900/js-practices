@@ -27,9 +27,13 @@ export function getAsync(db, sql, params) {
 }
 
 export function closeAsync(db) {
-  return new Promise((resolve) => {
-    db.close(() => {
-      resolve();
+  return new Promise((resolve, reject) => {
+    db.close((err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
     });
   });
 }
