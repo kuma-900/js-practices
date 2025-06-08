@@ -1,18 +1,23 @@
 import { runAsync, getAsync, closeAsync } from "./db.js";
-import { createTableSQL, insertSQL, selectSQL, dropTableSQL } from "./sql.js";
+import {
+  CREATE_TABLE_SQL,
+  INSERT_SQL,
+  SELECT_SQL,
+  DROP_TABLE_SQL,
+} from "./sql.js";
 
-runAsync(createTableSQL)
+runAsync(CREATE_TABLE_SQL)
   .then(() => {
     console.log("テーブルを作成しました");
-    return runAsync(insertSQL);
+    return runAsync(INSERT_SQL);
   })
   .then((id) => {
     console.log("レコードを追加しました。ID =", id);
-    return getAsync(selectSQL, id);
+    return getAsync(SELECT_SQL, id);
   })
   .then((row) => {
     console.log("取得したレコード:", row);
-    return runAsync(dropTableSQL);
+    return runAsync(DROP_TABLE_SQL);
   })
   .then(() => {
     console.log("テーブルを削除しました");

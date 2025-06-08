@@ -1,24 +1,24 @@
 import { db } from "./db.js";
 import {
-  createTableSQL,
-  insertSQL,
-  selectNoTableSQL,
-  dropTableSQL,
+  CREATE_TABLE_SQL,
+  INSERT_SQL,
+  SELECT_NO_TABLE_SQL,
+  DROP_TABLE_SQL,
 } from "./sql.js";
 
-db.run(createTableSQL, () => {
+db.run(CREATE_TABLE_SQL, () => {
   console.log("テーブルを作成しました");
 
-  db.run(insertSQL, function () {
+  db.run(INSERT_SQL, function () {
     console.log("レコードを追加しました。ID =", this.lastID);
 
-    db.run(insertSQL, (insertError) => {
+    db.run(INSERT_SQL, (insertError) => {
       console.error(insertError.message);
 
-      db.get(selectNoTableSQL, (selectError) => {
+      db.get(SELECT_NO_TABLE_SQL, (selectError) => {
         console.error(selectError.message);
 
-        db.run(dropTableSQL, () => {
+        db.run(DROP_TABLE_SQL, () => {
           console.log("テーブルを削除しました");
 
           db.close(() => {
