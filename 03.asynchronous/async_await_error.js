@@ -15,7 +15,7 @@ console.log("レコードを追加しました。ID =", result.lastID);
 try {
   await runAsync(db, INSERT_SQL);
 } catch (err) {
-  if (err.code === "SQLITE_CONSTRAINT") {
+  if (err?.code === "SQLITE_CONSTRAINT") {
     console.error(err.message);
   } else {
     throw err;
@@ -25,7 +25,7 @@ try {
 try {
   await getAsync(db, SELECT_NO_TABLE_SQL);
 } catch (err) {
-  if (err.code === "SQLITE_ERROR" && err.message.includes("no such table")) {
+  if (err?.code === "SQLITE_ERROR" && err.message.includes("no such table")) {
     console.error(err.message);
   } else {
     throw err;
