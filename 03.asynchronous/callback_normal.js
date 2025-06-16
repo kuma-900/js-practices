@@ -6,26 +6,22 @@ import {
   DROP_TABLE_SQL,
 } from "./sql.js";
 
-function runTest(db) {
-  db.run(CREATE_TABLE_SQL, () => {
-    console.log("テーブルを作成しました");
+db.run(CREATE_TABLE_SQL, () => {
+  console.log("テーブルを作成しました");
 
-    db.run(INSERT_SQL, function () {
-      console.log("レコードを追加しました。ID =", this.lastID);
+  db.run(INSERT_SQL, function () {
+    console.log("レコードを追加しました。ID =", this.lastID);
 
-      db.get(SELECT_SQL, [this.lastID], (_err, row) => {
-        console.log("取得したレコード:", row);
+    db.get(SELECT_SQL, [this.lastID], (_err, row) => {
+      console.log("取得したレコード:", row);
 
-        db.run(DROP_TABLE_SQL, () => {
-          console.log("テーブルを削除しました");
+      db.run(DROP_TABLE_SQL, () => {
+        console.log("テーブルを削除しました");
 
-          db.close(() => {
-            console.log("DB をクローズしました");
-          });
+        db.close(() => {
+          console.log("DB をクローズしました");
         });
       });
     });
   });
-}
-
-runTest(db);
+});
